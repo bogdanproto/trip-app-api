@@ -4,4 +4,6 @@ export const authPath = Object.freeze({
   LOGIN: '/login',
   LOGOUT: '/logout',
   CURRENT: '/current',
+  GOOGLE: '/google',
+  GOOGLE_REDIRECT: '/google-redirect',
 });

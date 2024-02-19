@@ -24,7 +24,7 @@ export const register = async (req, res) => {
   const user = await User.findByIdAndUpdate(
     _id,
     { token },
-    { new: true, select: '_id name email' }
+    { new: true, select: 'name email' }
   );
 
   res.status(status.CREATED.status).json({

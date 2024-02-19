@@ -27,7 +27,6 @@ export const login = async (req, res) => {
   res.json({
     ...status.USER_LOGIN,
     user: {
-      _id: user._id,
       email: user.email,
       name: user.name,
     },

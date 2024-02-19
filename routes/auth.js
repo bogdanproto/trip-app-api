@@ -21,4 +21,8 @@ authRouter.post(authPath.LOGOUT, authenticate, authCtrl.logout);
 
 authRouter.get(authPath.CURRENT, authenticate, authCtrl.getCurrent);
 
+authRouter.get(authPath.GOOGLE, authCtrl.googleAuth);
+
+authRouter.get(authPath.GOOGLE_REDIRECT, authCtrl.googleAuthRedirect);
+
 export default authRouter;
