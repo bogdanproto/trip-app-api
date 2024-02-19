@@ -3,7 +3,7 @@ import app from './app.js';
 
 (async function startServer() {
   try {
-    const { DB_HOST, PORT = 3000 } = process.env;
+    const { DB_HOST, PORT = 3030 } = process.env;
     await mongoose.connect(DB_HOST);
 
     app.listen(PORT, () => {
