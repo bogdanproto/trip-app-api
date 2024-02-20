@@ -31,30 +31,30 @@ export const googleAuthRedirect = async (req, res) => {
     },
   });
 
-  const { _id } = await User.findOne({
+  const potentialUser = await User.findOne({
     email: userData.data.email,
   });
 
-  const mainUser = { _id };
+  const user = { ...(potentialUser && { _id: potentialUser._id }) };
 
-  if (!_id) {
+  if (!potentialUser) {
     const { _id } = await User.create({
       email: userData.data.email,
       name: userData.data.name || 'noname',
       password: 'google',
     });
-    mainUser._id = _id;
+    user._id = _id;
   }
 
-  const token = createToken(mainUser._id);
+  const token = createToken(user._id);
 
-  const user = await User.findByIdAndUpdate(
-    mainUser._id,
+  const updUser = await User.findByIdAndUpdate(
+    user._id,
     { token },
     { new: true, select: 'name email' }
   );
 
   return res.redirect(
-    `${process.env.BASE_URL_FRONT}/?email=${user.email}&name=${user.name}&token=${token}`
+    `${process.env.BASE_URL_FRONT}/?email=${updUser.email}&name=${updUser.name}&token=${token}`
   );
 };
